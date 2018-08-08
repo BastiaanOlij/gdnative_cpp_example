@@ -1,16 +1,18 @@
 #!python
 import os, subprocess
 
+# define our target
+target_path = 'demo/bin/'
+target_name = 'libgdexample'
+
 # Local dependency paths, adapt them to your setup
-godot_headers_path = ARGUMENTS.get("headers", "godot_headers/")
-cpp_bindings_path = ARGUMENTS.get("cpp_bindings_path", "godot-cpp/")
-cpp_bindings_library_path = ARGUMENTS.get("cpp_bindings_library", "godot-cpp/bin/godot-cpp")
+godot_headers_path = "godot-cpp/godot_headers/"
+cpp_bindings_path = "godot-cpp/"
+cpp_library = "godot-cpp"
 
 target = ARGUMENTS.get("target", "debug")
 platform = ARGUMENTS.get("platform", "windows")
 bits = ARGUMENTS.get("bits", 64)
-
-final_lib_path = 'demo/bin/'
 
 # This makes sure to keep the session environment variables on windows, 
 # that way you can run scons in a vs 2017 prompt and it will find all the required tools
@@ -29,28 +31,29 @@ def add_sources(sources, directory):
 if platform == "osx":
     env.Append(CCFLAGS = ['-g','-O3', '-arch', 'x86_64'])
     env.Append(LINKFLAGS = ['-arch', 'x86_64'])
-
-    final_lib_path = final_lib_path + 'osx/'
+    target_path += 'osx/'
+    cpp_library += '.osx.64'
 
 elif platform == "linux":
     env.Append(CCFLAGS = ['-fPIC', '-g','-O3', '-std=c++14'])
-
-    final_lib_path = final_lib_path + 'x11/'
+    target_path += 'x11/'
+    cpp_library += '.linux.64'
 
 elif platform == "windows":
     if target == "debug":
         env.Append(CCFLAGS = ['-EHsc', '-D_DEBUG', '-MDd'])
     else:
         env.Append(CCFLAGS = ['-O2', '-EHsc', '-DNDEBUG', '-MD'])
-
-    final_lib_path = final_lib_path + 'win' + str(bits) + '/'
+    target_path += 'win' + str(bits) + '/'
+    cpp_library += '.windows.' + str(bits)
 
 env.Append(CPPPATH=['.', 'src/', godot_headers_path, cpp_bindings_path + 'include/', cpp_bindings_path + 'include/core/'])
-env.Append(LIBS=[cpp_bindings_library_path + "." + platform + "." + str(bits)])
+env.Append(LIBPATH=[cpp_bindings_path + 'bin/'])
+env.Append(LIBS=[cpp_library])
 
 sources = []
 add_sources(sources, "src")
 
-library = env.SharedLibrary(target=final_lib_path + 'libgdexample', source=sources)
+library = env.SharedLibrary(target=target_path + target_name, source=sources)
 Default(library)
 
