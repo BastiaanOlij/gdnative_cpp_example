@@ -5,6 +5,6 @@
 [resource]
 
 resource_name = "gdexample"
-class_name = "gdexample"
+class_name = "GDExample"
 library = ExtResource( 1 )
 _sections_unfolded = [ "Resource" ]
