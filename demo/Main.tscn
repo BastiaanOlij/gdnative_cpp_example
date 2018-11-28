@@ -9,4 +9,6 @@
 texture = ExtResource( 1 )
 centered = false
 script = ExtResource( 2 )
+amplitude = 20.0
+speed = 3.0
 
