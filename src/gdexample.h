@@ -6,8 +6,8 @@
 
 namespace godot {
 
-class gdexample : public godot::GodotScript<Sprite> {
-	GODOT_CLASS(gdexample)
+class gdexample : public Sprite {
+	GODOT_CLASS(gdexample, Sprite)
 
 private:
 	float time_passed;
@@ -17,6 +17,8 @@ public:
 
 	gdexample();
 	~gdexample();
+
+	void _init(); // our initializer called by Godot
 
 	void _process(float delta);
 };

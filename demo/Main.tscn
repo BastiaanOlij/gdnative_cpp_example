@@ -3,13 +3,10 @@
 [ext_resource path="res://icon.png" type="Texture" id=1]
 [ext_resource path="res://bin/gdexample.gdns" type="Script" id=2]
 
-[node name="Main" type="Node" index="0"]
+[node name="Main" type="Node"]
 
-[node name="Sprite" type="Sprite" parent="." index="0"]
-
+[node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
 centered = false
 script = ExtResource( 2 )
-_sections_unfolded = [ "Offset" ]
-
 

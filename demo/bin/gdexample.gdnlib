@@ -3,6 +3,7 @@
 singleton=false
 load_once=true
 symbol_prefix="godot_"
+reloadable=false
 
 [entry]
 
@@ -12,6 +13,6 @@ OSX.64="res://bin/osx/libgdexample.dylib"
 
 [dependencies]
 
-X11.64=[]
-Windows.64=[]
-OSX.64=[]
+X11.64=[  ]
+Windows.64=[  ]
+OSX.64=[  ]
