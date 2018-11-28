@@ -11,6 +11,7 @@ class gdexample : public Sprite {
 
 private:
 	float time_passed;
+	float time_emit;
 	float amplitude;
 	float speed;
 
