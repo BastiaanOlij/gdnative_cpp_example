@@ -11,5 +11,7 @@ texture = ExtResource( 1 )
 centered = false
 script = ExtResource( 2 )
 _sections_unfolded = [ "Offset" ]
+amplitude = 20.0
+speed = 3.0
 
 

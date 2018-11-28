@@ -11,6 +11,8 @@ class gdexample : public godot::GodotScript<Sprite> {
 
 private:
 	float time_passed;
+	float amplitude;
+	float speed;
 
 public:
 	static void _register_methods();
@@ -19,6 +21,8 @@ public:
 	~gdexample();
 
 	void _process(float delta);
+	void set_speed(float p_speed);
+	float get_speed();
 };
 
 }
